@@ -1,0 +1,25 @@
+[tool.poetry]
+name = "python-elastic"
+version = "0.0.0"
+description = ""
+authors = ["Paolo Modica"]
+license = "MIT"
+
+[tool.poetry.dependencies]
+python = "^3.9"
+pydantic = {extras = ["dotenv"], version = "^1.9.1"}
+elasticsearch = "^7.0"
+
+[tool.poetry.dev-dependencies]
+pytest = "^7.1.2"
+pytest-mock = "^3.8.2"
+pytest-factoryboy = "^2.5.0"
+flake8 = "^4.0.1"
+isort = "^5.10.1"
+black = "^22.6.0"
+ElasticMock = "^1.8.1"
+pytest-cov = "^3.0.0"
+
+[build-system]
+requires = ["poetry-core>=1.0.0"]
+build-backend = "poetry.core.masonry.api"
