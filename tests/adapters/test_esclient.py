@@ -29,7 +29,7 @@ def test_elasticclient_connection_raises_error(logger, mocker, settings):
 def test_elasticclient_build_connection_successful(logger, settings):
     elastic_client = ElasticClient(logger=logger, settings=settings)
     assert isinstance(elastic_client, ElasticClient)
-    assert elastic_client.esclient.info()
+    assert elastic_client.esclient.ping()
 
 
 # == create() tests ==

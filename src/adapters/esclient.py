@@ -41,14 +41,26 @@ class ElasticClient:
         Returns:
             Dict[str, Any]: Elasticseach response.
         """
-        response = self.esclient.index(
-            index=document.index,
-            id=document.id,
-            body=document.document,
-            refresh="true",
-        )
-        if not response:
-            err_message = "Document indexing failed."
-            self.logger.error(err_message)
-            raise Exception(err_message)
+        response = None
+        try:
+            response = self.esclient.index(
+                index=document.index,
+                id=document.id,
+                body=document.document,
+                refresh="true",
+            )
+            if not response:
+                err_message = "Document indexing failed."
+                self.logger.error(err_message)
+                raise Exception(err_message)
+        except Exception as e:
+            self.logger.error(
+                f"An error occurred while indexing a document. Error:{e}",
+                extra={
+                    "response": response,
+                    "error": e,
+                    "document": document,
+                },
+            )
+            raise e
         return response
